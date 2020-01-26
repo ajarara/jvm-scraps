@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.function.Predicate;
 
 public final class Heap<T> {
 
@@ -25,15 +24,15 @@ public final class Heap<T> {
         }
     }
 
-    public void insert(T element) {
+    public void add(T element) {
         backing.add(element);
         int currIdx = backing.size() - 1;
         if (currIdx == 0) {
             return;
         }
         int parentIdx = (currIdx - 1) / 2;
-        while (isGreaterThan(parentIdx, currIdx)) {
-            swap(parentIdx, currIdx);
+        while (obeysComparator(currIdx, parentIdx)) {
+            swap(currIdx, parentIdx);
             if (parentIdx != 0) {
                 currIdx = parentIdx;
                 parentIdx = (currIdx - 1) / 2;
@@ -69,9 +68,8 @@ public final class Heap<T> {
     }
 
     private T pop(int heapBound) {
-        int lastElementIdx = backing.size() - 1;
-        swap(0, lastElementIdx);
-        T returned = backing.remove(lastElementIdx);
+        swap(0, heapBound);
+        T returned = backing.remove(heapBound);
         siftDown(0, heapBound);
         return returned;
     }
@@ -99,22 +97,23 @@ public final class Heap<T> {
         int rightIdx = 2 * parentIdx + 2;
 
         if (leftIdx < heapBound) {
-            if (isGreaterThan(leftIdx, parentIdx)) {
-                if (rightIdx < heapBound && isGreaterThan(rightIdx, leftIdx)) {
+            if (obeysComparator(leftIdx, parentIdx)) {
+                if (rightIdx < heapBound && obeysComparator(rightIdx, leftIdx)) {
                     return OptionalInt.of(rightIdx);
                 }
                 return OptionalInt.of(leftIdx);
-            } else if (rightIdx < heapBound && isGreaterThan(rightIdx, parentIdx)) {
+            } else if (rightIdx < heapBound && obeysComparator(rightIdx, parentIdx)) {
                 return OptionalInt.of(rightIdx);
             }
         }
         return OptionalInt.empty();
     }
 
-    private boolean isGreaterThan(int greaterIdx, int lesserIdx) {
-        return comparator.compare(
+    private boolean obeysComparator(int greaterIdx, int lesserIdx) {
+        boolean toBeReturned = comparator.compare(
                 backing.get(greaterIdx),
                 backing.get(lesserIdx)
-        ) > 0;
+        ) < 0;
+        return toBeReturned;
     }
 }
