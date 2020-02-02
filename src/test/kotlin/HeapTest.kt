@@ -1,5 +1,7 @@
 import org.junit.Test
+import java.lang.StringBuilder
 import java.util.*
+import java.util.stream.Collectors.groupingBy
 import kotlin.Comparator
 import kotlin.random.Random
 
@@ -21,7 +23,8 @@ class HeapTest {
     private fun <T> assertPrioritySortEquivalence(ls: List<T>, cmp: Comparator<T>) {
         val heap = Heap<T>(cmp)
         val pq = PriorityQueue<T>(cmp)
-
+        pq.stream()
+            .findFirst()
         ls.forEach {
             heap.add(it)
             pq.add(it)

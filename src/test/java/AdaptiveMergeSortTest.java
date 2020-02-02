@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 
 public class AdaptiveMergeSortTest {
 
+
     @Test
     public void adaptiveMergeSortIsStable() {
         List<Data> data = Arrays.asList(
