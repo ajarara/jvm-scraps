@@ -1,39 +1,50 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
-class Solution {
+public class Solution {
 
-    private static final class WildcardTrie {
-        private final Map<Character, WildcardTrie> backed = new HashMap<>();
-        private boolean isWord = false;
-
-        public void add(String word, int idx) {
-            if (word.length() == idx) {
-                isWord = true;
-            } else {
-                backed.computeIfAbsent(word.charAt(idx), (ch) -> new WildcardTrie())
-                        .add(word, idx + 1);
-            }
+    // Encodes a list of strings to a single string.
+    public String encode(List<String> strs) {
+        if (strs == null) {
+            return null;
         }
-
-        public boolean get(String word, int idx) {
-            if (word.length() == idx) {
-                return isWord;
-            }
-            final char lookingAt = word.charAt(idx);
-            if (lookingAt == '.') {
-                return backed.values()
-                        .stream()
-                        .anyMatch(it -> it.get(word, idx + 1));
-            } else {
-                WildcardTrie delegate = backed.get(lookingAt);
-                if (delegate == null) {
-                    return false;
-                } else {
-                    return delegate.get(word, idx + 1);
-                }
-            }
+        if (strs.isEmpty()) {
+            return "";
         }
+        final StringBuilder out = new StringBuilder();
+        strs.forEach(s -> {
+            out.append(s.length());
+            out.append("|");
+            out.append(s);
+        });
+        return out.toString();
+    }
+
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) throws Exception {
+        if (s == null) {
+            return null;
+        }
+        if (s.isEmpty()) {
+            return new ArrayList<>();
+        }
+        final List<String> out = new ArrayList<>();
+        int start = 0;
+        int sentinel = s.indexOf('|');
+        while (sentinel != -1) {
+            if (sentinel == s.length() - 1) {
+                out.add("");
+                break;
+            }
+            int numToRead = Integer.valueOf(s.substring(start, sentinel));
+            out.add(s.substring(sentinel + 1, sentinel + 1 + numToRead));
+            start = sentinel + 1 + numToRead;
+            sentinel = s.indexOf('|', start);
+        }
+        return out;
     }
 }
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(strs));

@@ -22,9 +22,22 @@ class KahnsTopologicalSortTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun `cycle detection doesn't run forever`() {
-        val attempted = KahnsTopologicalSort.topoSort(mapOf(
+        KahnsTopologicalSort.topoSort(mapOf(
             "a" to listOf("c"),
             "c" to listOf("a")
         ))
+    }
+
+    @Test
+    fun `forests are topologically sorted`() {
+        val sorted = KahnsTopologicalSort.topoSort(mapOf(
+            "a" to listOf("c"),
+            "c" to listOf(),
+            "e" to listOf()
+        ))
+
+        assert(sorted == listOf("a", "e", "c")) {
+            "$sorted"
+        }
     }
 }

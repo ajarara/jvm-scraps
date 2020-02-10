@@ -1,12 +1,9 @@
-import java.util.ArrayDeque;
-import java.util.Iterator;
-import java.util.Queue;
-import java.util.Spliterator;
+import java.util.*;
 
 public class BreadthFirstTraversal {
 
     public static <T> Iterator<TreeNode<T>> iterate(TreeNode<T> root) {
-        final Queue<TreeNode<T>> queue = new ArrayDeque<>();
+        final Deque<TreeNode<T>> queue = new ArrayDeque<>();
         queue.add(root);
 
         return new Iterator<TreeNode<T>>() {

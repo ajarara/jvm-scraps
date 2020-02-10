@@ -1,5 +1,3 @@
-import org.intellij.lang.annotations.Flow;
-
 import java.util.*;
 
 // too complex for a whiteboard.
@@ -41,7 +39,7 @@ public class Tarjan {
 
             }
         }
-        throw new IllegalStateException("SUre");
+        throw new UnsupportedOperationException("Not bothering");
     }
 
     private static final class Info {
