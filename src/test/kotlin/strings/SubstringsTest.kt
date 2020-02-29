@@ -2,8 +2,6 @@ package strings
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
-import java.util.stream.Collectors.toList
-import kotlin.streams.toList
 
 class SubstringsTest {
 

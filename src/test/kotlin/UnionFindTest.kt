@@ -1,8 +1,10 @@
+import org.junit.Ignore
 import org.junit.Test
 
 class UnionFindTest {
 
     @Test
+    @Ignore
     fun `union find identifies roots`() {
         val roots = UnionFind.roots(mapOf(
             'b' to setOf('c','d'),
