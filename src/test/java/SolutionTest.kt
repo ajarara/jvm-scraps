@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.util.*
-import java.util.stream.Collectors.toList
-import java.util.stream.IntStream
 import java.util.stream.Stream
 
 internal class SolutionTest {

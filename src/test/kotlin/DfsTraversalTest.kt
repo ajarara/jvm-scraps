@@ -25,11 +25,6 @@ class DfsTraversalTest {
     // need a way to measure this..
     @Test
     fun `high branch treenodes behave well in this dfs`() {
-        val b = sequence {
-            yield(5)
-            yieldAll(listOf(100, 200))
-        }
-
         val bigTree = bigTree(8_000_000)
         val now = System.currentTimeMillis();
         val path = DfsTraversal.getPath(bigTree) { it.children.isEmpty() }
