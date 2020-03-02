@@ -16,6 +16,7 @@ fun bstOf(treeNode: TreeNode): Sequence<TreeNode> {
     }
 }
 
+
 fun inOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
     val stack = LinkedList<TreeNode>()
     stack.push(treeNode)
@@ -38,5 +39,17 @@ fun preOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
         treeNode.right?.let {
             yieldAll(preOrderOf(it))
         }
+    }
+}
+
+fun postOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
+    return sequence {
+        treeNode.left?.let {
+            yieldAll(postOrderOf(it))
+        }
+        treeNode.right?.let {
+            yieldAll(postOrderOf(it))
+        }
+        yield(treeNode)
     }
 }

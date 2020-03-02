@@ -40,4 +40,38 @@ class TraversalsKtTest {
             values.joinToString()
         }
     }
+
+    @Test
+    fun `pre order works`() {
+        val root = TreeNode.from(listOf(
+                1,
+              2,   5,
+            3, 4, 6, 7
+        ))
+
+        val values = preOrderOf(root)
+            .map { it.value }
+            .toList()
+
+        assert(values == listOf(1, 2, 3, 4, 5, 6, 7)) {
+            values.joinToString()
+        }
+    }
+
+    @Test
+    fun `post order works`() {
+        val root = TreeNode.from(listOf(
+                7,
+             3,    6,
+            1, 2, 4, 5
+        ))
+
+        val values = postOrderOf(root)
+            .map { it.value }
+            .toList()
+
+        assert(values == listOf(1, 2, 3, 4, 5, 6, 7)) {
+            values.joinToString()
+        }
+    }
 }
