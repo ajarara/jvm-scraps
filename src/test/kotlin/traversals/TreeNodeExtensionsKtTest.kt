@@ -10,7 +10,7 @@ class TreeNodeExtensionsKtTest {
             5,
             10, 25,
             15, null, 18, 25,
-            5, 31, null, null, 13, null, null, null
+            5, 31, null, null, 13
         )
         val backAgain = TreeNode.from(completeForm)
             .toCompleteForm()

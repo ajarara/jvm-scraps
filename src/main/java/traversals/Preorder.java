@@ -16,9 +16,12 @@ public final class Preorder {
         while(!stack.isEmpty()) {
             TreeNode curr = stack.pop();
             out.add(curr.value);
-            Stream.of(curr.right, curr.left)
-                    .filter(Objects::nonNull)
-                    .forEach(stack::push);
+            if (curr.right != null) {
+                stack.push(curr.right);
+            }
+            if (curr.left != null) {
+                stack.push(curr.left);
+            }
         }
 
         return out;

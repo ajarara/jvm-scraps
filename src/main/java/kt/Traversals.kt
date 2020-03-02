@@ -28,3 +28,15 @@ fun inOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
         }
     }
 }
+
+fun preOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
+    return sequence {
+        yield(treeNode)
+        treeNode.left?.let {
+            yieldAll(preOrderOf(it))
+        }
+        treeNode.right?.let {
+            yieldAll(preOrderOf(it))
+        }
+    }
+}

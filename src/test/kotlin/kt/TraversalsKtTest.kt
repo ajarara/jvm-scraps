@@ -23,7 +23,21 @@ class TraversalsKtTest {
         }
     }
 
+    @Test
+    fun `in order works`() {
+        val root = TreeNode.from(listOf(
+            8,
+            null, 3,
+            null, null, 5, 10,
+            null, null, null, null, 1, 1, 3, 7
+        ))
 
-    companion object {
+        val values = inOrderOf(root)
+            .map { it.value }
+            .toList()
+
+        assert(values == listOf(8, 3, 5, 1, 1, 10, 3, 7)) {
+            values.joinToString()
+        }
     }
 }
