@@ -1,0 +1,23 @@
+package traversals
+
+import org.junit.Test
+
+class TreeNodeExtensionsKtTest {
+
+    @Test
+    fun `toCompleteForm should start with result of static from factory`() {
+        val completeForm = listOf(
+            5,
+            10, 25,
+            15, null, 18, 25,
+            5, 31, null, null, 13, null, null, null
+        )
+        val backAgain = TreeNode.from(completeForm)
+            .toCompleteForm()
+            .subList(0, completeForm.size)
+        assert(backAgain == completeForm) {
+            backAgain.joinToString()
+        }
+
+    }
+}
