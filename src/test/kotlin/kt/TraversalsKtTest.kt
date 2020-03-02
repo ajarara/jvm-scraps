@@ -27,7 +27,7 @@ class TraversalsKtTest {
     fun `in order works`() {
         val root = TreeNode.from(listOf(
             8,
-            null, 3,
+            1, 3,
             null, null, 5, 10,
             null, null, null, null, 1, 1, 3, 7
         ))
@@ -36,7 +36,7 @@ class TraversalsKtTest {
             .map { it.value }
             .toList()
 
-        assert(values == listOf(8, 3, 5, 1, 1, 10, 3, 7)) {
+        assert(values == listOf(1, 8, 1, 5, 1, 3, 3, 10, 7)) {
             values.joinToString()
         }
     }

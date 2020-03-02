@@ -4,7 +4,7 @@ import traversals.TreeNode
 import java.util.*
 
 fun bstOf(treeNode: TreeNode): Sequence<TreeNode> {
-    val queue: Queue<TreeNode> = ArrayDeque<TreeNode>()
+    val queue: Queue<TreeNode> = LinkedList<TreeNode>()
     queue.add(treeNode)
     return sequence {
         while(queue.isNotEmpty()) {
@@ -18,14 +18,13 @@ fun bstOf(treeNode: TreeNode): Sequence<TreeNode> {
 
 
 fun inOrderOf(treeNode: TreeNode): Sequence<TreeNode> {
-    val stack = LinkedList<TreeNode>()
-    stack.push(treeNode)
     return sequence {
-        while(stack.isNotEmpty()) {
-            val popped = stack.pop()
-            popped.right?.let { stack.push(it) }
-            popped.left?.let { stack.push(it) }
-            yield(popped)
+        treeNode.left?.let {
+            yieldAll(inOrderOf(it))
+        }
+        yield(treeNode)
+        treeNode.right?.let {
+            yieldAll(inOrderOf(it))
         }
     }
 }
