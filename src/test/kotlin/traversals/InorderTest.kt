@@ -7,14 +7,18 @@ class InorderTest {
 
     @Test
     fun `iterative - simple inorder traversal`() {
-        val traversal = Inorder.iterative(TreeNodeTest.simpleTreeNode)
+        val traversal = Inorder.iterative(TreeNode.from(10, 5))
 
         assertThat(traversal).isEqualTo(listOf(5, 10))
     }
 
     @Test
     fun `iterative - more complex inorder traversal`() {
-        val traversal = Inorder.iterative(TreeNodeTest.lessSimple)
+        val traversal = Inorder.iterative(TreeNode.from(
+            5,
+            15, 86,
+            null, 26, null, null
+        ))
 
         assertThat(traversal)
             .isEqualTo(listOf(15, 26, 5, 86))
@@ -22,7 +26,7 @@ class InorderTest {
 
     @Test
     fun `recursive - simple inorder traversal`() {
-        val traversal = Inorder.recursive(TreeNodeTest.simpleTreeNode)
+        val traversal = Inorder.recursive(TreeNode.from(10, 5))
 
         assertThat(traversal).isEqualTo(listOf(5, 10))
     }

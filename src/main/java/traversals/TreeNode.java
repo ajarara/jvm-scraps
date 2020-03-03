@@ -2,7 +2,7 @@ package traversals;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.Objects;
 
 public final class TreeNode {
     public final int value;
@@ -21,18 +21,17 @@ public final class TreeNode {
         this.right = right;
     }
 
-    public static TreeNode leaf(final int value) {
-        return new TreeNode(value, null, null);
-    }
+    // null _in_ values is expected, that's why we use the boxed Integer
+    public static TreeNode from(Integer... values) {
+        Objects.requireNonNull(values);
 
-    public static TreeNode from(final List<Integer> complete) {
-        if (complete.isEmpty()) {
+        if (values.length == 0) {
             throw new IllegalArgumentException("Complete cannot be empty");
         }
-        TreeNode[] byPosition = new TreeNode[complete.size()];
+        TreeNode[] byPosition = new TreeNode[values.length];
 
-        for (int i = complete.size() - 1; i >= 0; i--) {
-            Integer nodeValue = complete.get(i);
+        for (int i = values.length - 1; i >= 0; i--) {
+            Integer nodeValue = values[i];
             if (nodeValue != null) {
                 final int leftChild = (2 * i) + 1;
                 final int rightChild = (2 * i) + 2;

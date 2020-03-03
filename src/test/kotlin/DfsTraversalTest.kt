@@ -25,7 +25,7 @@ class DfsTraversalTest {
     // need a way to measure this..
     @Test
     fun `high branch treenodes behave well in this dfs`() {
-        val bigTree = bigTree(8_000_000)
+        val bigTree = bigTree(8_000)
         val now = System.currentTimeMillis();
         val path = DfsTraversal.getPath(bigTree) { it.children.isEmpty() }
         println("Finished searching ${System.currentTimeMillis() - now}")
@@ -36,7 +36,7 @@ class DfsTraversalTest {
     // need a way to measure this..
     @Test
     fun `high branch treenodes behave well in recursive dfs`() {
-        val bigTree = bigTree(8_000_000)
+        val bigTree = bigTree(8_000)
         val now = System.currentTimeMillis();
         val path = RecursiveDfsTraversal.recursiveDfs(bigTree, { it.children.isEmpty() }, null)
         println("Finished searching ${System.currentTimeMillis() - now}")
