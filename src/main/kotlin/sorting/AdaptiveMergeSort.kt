@@ -1,4 +1,4 @@
-package kt
+package sorting
 
 import java.util.*
 import kotlin.Comparator

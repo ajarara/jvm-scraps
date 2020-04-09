@@ -1,4 +1,4 @@
-package kt
+package trees
 
 import traversals.TreeNode
 import java.util.*
@@ -8,10 +8,10 @@ fun bstOf(treeNode: TreeNode): Sequence<TreeNode> {
     queue.add(treeNode)
     return sequence {
         while(queue.isNotEmpty()) {
-            val polled = queue.poll()
-            polled.left?.let { queue.add(it) }
-            polled.right?.let { queue.add(it) }
-            yield(polled)
+            val removed = queue.remove()
+            removed.left?.let { queue.add(it) }
+            removed.right?.let { queue.add(it) }
+            yield(removed)
         }
     }
 }

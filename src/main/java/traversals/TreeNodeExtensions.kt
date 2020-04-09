@@ -46,3 +46,21 @@ fun TreeNode.toCompleteForm(): List<Int?> {
 }
 
 private class Peg(val level: Int, val treeNode: TreeNode?)
+
+fun TreeNode.toCompleteForm2(): List<Int?> {
+    val q = LinkedList<List<TreeNode?>>()
+    q.add(listOf(this))
+    val out = mutableListOf<Int?>(this.value)
+    while (q.isNotEmpty()) {
+        val removed = q.remove()
+        val children = removed.flatMap {
+            listOf(it?.left, it?.right)
+        }
+        out.addAll(children.map { it?.value })
+
+        if (children.any { it != null }) {
+            q.add(children)
+        }
+    }
+    return out
+}

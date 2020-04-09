@@ -43,5 +43,4 @@ public class Scratch {
         }
         assert out.get('y').equals(2);
     }
-
 }

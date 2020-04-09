@@ -1,6 +1,10 @@
 package kt
 
+import trees.bstOf
+import trees.inOrderOf
 import org.junit.Test
+import trees.postOrderOf
+import trees.preOrderOf
 import traversals.TreeNode
 
 class TraversalsKtTest {

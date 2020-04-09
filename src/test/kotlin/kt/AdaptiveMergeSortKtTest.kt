@@ -1,5 +1,6 @@
 package kt
 
+import sorting.adaptiveMergeSort
 import org.junit.Test
 import kotlin.random.Random
 
